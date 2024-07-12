@@ -1,0 +1,36 @@
+.footer_add {
+    margin-left: 80px;
+    background-color: #fff;
+    margin-top: 19px;
+    padding: 20px 0;
+}
+
+.saved_btn {
+    background-color: #1BC58D;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 10.08px;
+}
+
+.footer_add__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.cancel_btn{
+    color: #80809B;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 10.08px;
+}
+
+@media screen and (max-width: 634px) {
+    .footer_add {
+        margin-left: 0;
+    }
+}

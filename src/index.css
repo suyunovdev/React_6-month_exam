@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Mulish", sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+}
+
+body {
+  background-color: #eeeef5;
+}
+
+.container{
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 490px) {
+  .container{
+    width: 100%;
+  }
+}

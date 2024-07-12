@@ -1,0 +1,136 @@
+.products {
+    margin-top: 40px;
+    margin-left: 80px;
+}
+
+.products__container {
+    background-color: #fff;
+    padding: 44px 24px;
+    border-radius: 12px;
+}
+
+.products__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 43px;
+}
+
+.search__box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #F7F7FF;
+    border-radius: 12px;
+    padding: 10px 5px 9px 24px;
+}
+
+#search {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 21px;
+    width: 100%;
+}
+
+.products__text {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 11.52px;
+    color: #212121;
+}
+
+
+.products__data_box {
+    margin-top: 39px;
+    overflow-x: scroll;
+}
+
+.products__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table__title {
+    text-align: left;
+
+    th {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E8E8F1;
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 8.64px;
+        text-transform: uppercase;
+        color: #B5B5C3;
+        padding-right: 10px;
+    }
+}
+
+.table__body {
+    td {
+        padding: 20px 0;
+        border-bottom: 1px solid #E8E8F1;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20.08px;
+        color: #212121;
+        padding-right: 8px;
+    }
+}
+
+.btn_box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn {
+    background-color: #F7F7FF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 7px 8px;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 675px) {
+    .btn_box {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 634px) {
+    .products {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .rating {
+        display: none;
+    }
+
+    .products__title {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: flex-start;
+    }
+
+    .search__box {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 445px) {
+    .stock {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 392px) {
+    .brand {
+        display: none;
+    }
+}
