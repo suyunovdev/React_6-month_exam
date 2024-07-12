@@ -13,7 +13,7 @@ const ProductsComp = ({ name }) => {
   const [loading, setLoading] = useState(false);
   const fetchApi = async () => {
     setLoading(true);
-    const res = await axios.get("http://localhost:3300/products");
+    const res = await axios.get("http://localhost:3000/products");
     const data = res.data;
     setProducts(data);
     setLoading(false);
@@ -43,7 +43,7 @@ const ProductsComp = ({ name }) => {
   const handleDelete = (dataId) => {
     if (confirm("Are you delete this product, Sure")) {
       setFiltered(filtered.filter((product) => product.id !== dataId));
-      axios.delete(`http://localhost:3300/products/${dataId}`);
+      axios.delete(`http://localhost:3000/products/${dataId}`);
     }
   };
   return (
@@ -70,12 +70,10 @@ const ProductsComp = ({ name }) => {
             <thead>
               <tr className="table__title">
                 <th>ID</th>
-                <th className="name">Артикул</th>
                 <th className="name">Name</th>
-                <th className="rating">Rating</th>
                 <th className="brand">Brand</th>
                 <th>Price</th>
-                <th className="stock">Цена со скидкой</th>
+                <th className="stock">Stock</th>
                 <th></th>
               </tr>
             </thead>
@@ -86,12 +84,10 @@ const ProductsComp = ({ name }) => {
               {filtered.map((data, index) => (
                 <tr key={data.id} className="table__body">
                   <td>{index + 1}</td>
-                  <td className="id">{data.id}</td>
-                  <td className="name">{data.name}</td>
-                  <td className="rating">{data.code}</td>
+                  <td className="name">{data.title}</td>
                   <td className="brand">{data.brand}</td>
                   <td>{data.price}$</td>
-                  <td className="stock">{data.priceInSale}$</td>
+                  <td className="stock">{data.stock}$</td>
                   <td>
                     <div className="btn_box">
                       <NavLink to={`/edit/${data.id}`}>

@@ -7,13 +7,13 @@ const EditAddComp = ({ form, name, id }) => {
   const [bool, setBool] = useState(false);
 
   const handleEdit = async () => {
-    if (name.title && name.brand && name.rating ) {
-      await axios.put(`http://localhost:3300/products/${id}`, name);
+    if (name.title && name.brand && name.rating && name.description) {
+      await axios.put(`http://localhost:3000/products/${id}`, name);
     }
   };
 
   useEffect(() => {
-    if (name.title && name.brand && name.rating ) {
+    if (name.title && name.brand && name.rating && name.description) {
       setBool(true);
     }
   }, [name]);

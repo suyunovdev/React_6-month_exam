@@ -10,7 +10,7 @@ const Edit = ({ setLocation }) => {
   const [name, setName] = useState({});
 
   const fetchApi = async () => {
-    const res = await axios.get(`http://localhost:3300/products/${id}`);
+    const res = await axios.get(`http://localhost:3000/products/${id}`);
     const data = res.data;
     setProduct(data);
   };

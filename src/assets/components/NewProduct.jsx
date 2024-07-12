@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import "../SASS/NewProduct.scss";
 
 const NewProduct = ({handleSubmit, form}) => {

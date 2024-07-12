@@ -10,12 +10,12 @@ const Add = ({ name, setName, setLocation }) => {
     setName({ ...name, [e.target.id]: e.target.value });
   };
   const handleAdd = async () => {
-    if (name.title && name.brand && name.rating) {
-      await axios.post("http://localhost:3300/products", name);
+    if (name.title && name.brand && name.rating && name.description) {
+      await axios.post("http://localhost:3000/products", name);
     }
   };
   useEffect(() => {
-    if (name.title && name.brand && name.rating && name.stock) {
+    if (name.title && name.brand && name.rating && name.description) {
       setBool(true);
     }
   }, [name]);
