@@ -46,12 +46,12 @@ const ProductsComp = ({ name }) => {
   };
 
   const handleDelete = async (dataId) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
+    if (window.confirm("Productni uchirasizmi ?")) {
       try {
         await axios.delete(`http://localhost:3000/products/${dataId}`);
         setFiltered(filtered.filter((product) => product.id !== dataId));
       } catch (error) {
-        console.error("Error deleting product: ", error);
+        console.error("O'chirishda xato bor: ", error);
       }
     }
   };
