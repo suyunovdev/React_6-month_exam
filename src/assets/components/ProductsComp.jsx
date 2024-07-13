@@ -119,7 +119,7 @@ const ProductsComp = ({ name }) => {
                 ) : (
                   <tr>
                     <td colSpan="6" className="no-data">
-                      No products available.
+                      Product topilmadi.
                     </td>
                   </tr>
                 )}
