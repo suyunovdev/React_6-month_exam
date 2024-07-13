@@ -9,28 +9,33 @@ import { NavLink } from "react-router-dom";
 
 const ProductsComp = ({ name }) => {
   const [products, setProducts] = useState([]);
-  const [filtered, setFiltered] = useState(products);
+  const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const fetchApi = async () => {
     setLoading(true);
-    const res = await axios.get("http://localhost:3000/products");
-    const data = res.data;
-    setProducts(data);
-    setLoading(false);
+    try {
+      const res = await axios.get("http://localhost:3000/products", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = res.data;
+      setProducts(data);
+      setFiltered(data); // Set filtered products here
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    } finally {
+      setLoading(false);
+    }
   };
-  useEffect(() => {
-    fetchApi();
-  }, []);
-  useEffect(() => {
-    setFiltered(products);
-  }, [products]);
 
   useEffect(() => {
     fetchApi();
   }, [name]);
 
   const handleSearch = (e) => {
-    let text = e.target.value.toLowerCase();
+    const text = e.target.value.toLowerCase();
     setFiltered(
       products.filter(
         (product) =>
@@ -40,20 +45,25 @@ const ProductsComp = ({ name }) => {
     );
   };
 
-  const handleDelete = (dataId) => {
-    if (confirm("Are you delete this product, Sure")) {
-      setFiltered(filtered.filter((product) => product.id !== dataId));
-      axios.delete(`http://localhost:3000/products/${dataId}`);
+  const handleDelete = async (dataId) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await axios.delete(`http://localhost:3000/products/${dataId}`);
+        setFiltered(filtered.filter((product) => product.id !== dataId));
+      } catch (error) {
+        console.error("Error deleting product: ", error);
+      }
     }
   };
+
   return (
     <div className="products">
       <div className="container products__container">
         <div className="products__title">
-          <h2 className="products__text">All products({filtered.length})</h2>
+          <h2 className="products__text">All products ({filtered.length})</h2>
           <div className="search__box">
             <label htmlFor="search">
-              <img src={search} alt="search image" />
+              <img src={search} alt="search" />
             </label>
             <input
               onChange={handleSearch}
@@ -66,47 +76,56 @@ const ProductsComp = ({ name }) => {
         </div>
         <hr />
         <div className="products__data_box">
-          <table className="products__table">
-            <thead>
-              <tr className="table__title">
-                <th>ID</th>
-                <th className="name">Name</th>
-                <th className="brand">Brand</th>
-                <th>Price</th>
-                <th className="stock">Stock</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{loading && <Loading />}</td>
-              </tr>
-              {filtered.map((data, index) => (
-                <tr key={data.id} className="table__body">
-                  <td>{index + 1}</td>
-                  <td className="name">{data.title}</td>
-                  <td className="brand">{data.brand}</td>
-                  <td>{data.price}$</td>
-                  <td className="stock">{data.stock}$</td>
-                  <td>
-                    <div className="btn_box">
-                      <NavLink to={`/edit/${data.id}`}>
-                        <button className="btn">
-                          <img src={edit} alt="edit image" />
-                        </button>
-                      </NavLink>
-                      <button
-                        className="btn"
-                        onClick={() => handleDelete(data.id)}
-                      >
-                        <img src={del} alt="delete image" />
-                      </button>
-                    </div>
-                  </td>
+          {loading ? (
+            <Loading />
+          ) : (
+            <table className="products__table">
+              <thead>
+                <tr className="table__title">
+                  <th>ID</th>
+                  <th className="name">Name</th>
+                  <th className="brand">Brand</th>
+                  <th>Price</th>
+                  <th className="stock">Stock</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filtered.length > 0 ? (
+                  filtered.map((data, index) => (
+                    <tr key={data.id} className="table__body">
+                      <td>{index + 1}</td>
+                      <td className="name">{data.title}</td>
+                      <td className="brand">{data.brand}</td>
+                      <td>{data.price}$</td>
+                      <td className="stock">{data.stock}$</td>
+                      <td>
+                        <div className="btn_box">
+                          <NavLink to={`/edit/${data.id}`}>
+                            <button className="btn">
+                              <img src={edit} alt="edit" />
+                            </button>
+                          </NavLink>
+                          <button
+                            className="btn"
+                            onClick={() => handleDelete(data.id)}
+                          >
+                            <img src={del} alt="delete" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="6" className="no-data">
+                      No products available.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

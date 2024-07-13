@@ -89,33 +89,7 @@
       "price": 11.99,
       "stock": 8.99,
       "description": "Calcium supplements to support bone health."
-    },
-    {
-      "id": "3f84",
-      "title": "dsad",
-      "description": "svcsa",
-      "price": "233",
-      "rating": "32",
-      "stock": "21",
-      "brand": "sdadc"
-    },
-    {
-      "id": "dc7f",
-      "title": "Ilyos Suyunov ",
-      "description": "5435yjtdfg",
-      "price": "456",
-      "rating": "4565424",
-      "stock": "345672845",
-      "brand": "dsfa"
-    },
-    {
-      "id": "363b",
-      "title": "trgfd",
-      "brand": "fg",
-      "rating": "4545",
-      "description": "fgbvnb",
-      "price": "54653",
-      "stock": "345"
     }
+  
   ]
 }
